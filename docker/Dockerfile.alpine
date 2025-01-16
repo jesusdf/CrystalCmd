@@ -1,15 +1,19 @@
-FROM alpine:3.21
+FROM alpine:3.18
 
 LABEL maintainer "JesusDF"
 
 RUN mkdir -p /app \
-        && apk add --no-cache openjdk11-jre msttcorefonts-installer fontconfig \
+        && apk add --no-cache openjdk16-jre msttcorefonts-installer fontconfig \
         && update-ms-fonts \
         && fc-cache -f \
         && ln -s /usr/share/fonts/truetype/msttcorefonts /usr/lib/jvm/default-jvm/jre/lib/fonts \
         && adduser -D crystal
 WORKDIR /app
-COPY CrystalCmd.jar /app/
+
+# JAVA application
+COPY app/CrystalCmd.jar /app/
+# Additional fonts
+COPY fonts/* /usr/share/fonts/truetype/msttcorefonts/
 
 EXPOSE 4321
 USER crystal
