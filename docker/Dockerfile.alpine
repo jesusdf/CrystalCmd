@@ -3,15 +3,15 @@ FROM alpine:3.18
 LABEL maintainer "JesusDF"
 
 RUN mkdir -p /app \
- && mkdir -p /usr/share/fonts/truetype/extra
+ && mkdir -p /usr/share/fonts/truetype/msttcorefonts/
 
 # Additional fonts
-COPY fonts/* /usr/share/fonts/truetype/extra/
+COPY fonts/* /usr/share/fonts/truetype/msttcorefonts/
 
 RUN apk add --no-cache openjdk16-jre msttcorefonts-installer fontconfig \
         && update-ms-fonts \
         && fc-cache -f \
-        && ln -s /usr/share/fonts/truetype /usr/lib/jvm/default-jvm/jre/lib/fonts \
+        && ln -s /usr/share/fonts/truetype/msttcorefonts /usr/lib/jvm/default-jvm/jre/lib/fonts \
         && adduser -D crystal
 WORKDIR /app
 
