@@ -36,18 +36,18 @@ jobs:
           platforms: linux/amd64
           push: true
           tags: |
-            docker.io/${{ github.repository_owner }}/crystalcmd:alpine-latest
-            docker.io/${{ github.repository_owner }}/crystalcmd:a-${{ steps.vars.outputs.sha_short }}
-      - name: Build and push - ubuntu
-        uses: docker/build-push-action@v3
-        with:
-          context: ./docker
-          file: ./docker/Dockerfile
-          platforms: linux/amd64
-          push: true
-          tags: |
-            docker.io/${{ github.repository_owner }}/crystalcmd:ubuntu-latest
-            docker.io/${{ github.repository_owner }}/crystalcmd:u-${{ steps.vars.outputs.sha_short }}
+            docker.io/${{ github.repository_owner }}/crystalcmd:latest
+            docker.io/${{ github.repository_owner }}/crystalcmd:${{ steps.vars.outputs.sha_short }}
+      #- name: Build and push - ubuntu
+      #  uses: docker/build-push-action@v3
+      #  with:
+      #    context: ./docker
+      #    file: ./docker/Dockerfile
+      #    platforms: linux/amd64
+      #    push: true
+      #    tags: |
+      #      docker.io/${{ github.repository_owner }}/crystalcmd:ubuntu-latest
+      #      docker.io/${{ github.repository_owner }}/crystalcmd:u-${{ steps.vars.outputs.sha_short }}
       - name: Update Docker Hub Description
         uses: peter-evans/dockerhub-description@v3
         with:
