@@ -24,4 +24,5 @@ WORKDIR /app
 
 EXPOSE 4321
 USER crystal
-CMD ["java", "-DJAVA_FONTS=/usr/share/fonts", "-jar", "/app/CrystalCmd.jar"]
+ENV JAVA_FONTS=/usr/share/fonts
+CMD ["java", "-jar", "/app/CrystalCmd.jar"]
