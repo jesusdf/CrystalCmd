@@ -15,9 +15,10 @@ COPY app/CrystalCmd.jar /app/
 # Additional fonts
 COPY fonts/* /usr/share/fonts/truetype/custom/
 
-RUN cp -xaRP /usr/share/fonts/truetype/custom/* /usr/lib/jvm/default-jvm/jre/lib/fonts/ \
-        && cp -xaRP /usr/share/fonts/truetype/msttcorefonts/* /usr/lib/jvm/default-jvm/jre/lib/fonts/ \
-        && fc-cache -f
+RUN cp /usr/share/fonts/truetype/custom/*        /usr/lib/jvm/default-jvm/jre/lib/fonts/ \
+ && cp /usr/share/fonts/truetype/msttcorefonts/* /usr/lib/jvm/default-jvm/jre/lib/fonts/
+
+RUN fc-cache -f
 
 WORKDIR /app
 
