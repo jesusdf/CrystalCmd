@@ -1,4 +1,6 @@
 
+Forked and rebased from https://github.com/majorsilence/CrystalCmd to meet custom needs.
+
 # What is CrystalCmd
 
 CrystalCmd is a Java program to load json files into crystal reports and produce PDFs.
