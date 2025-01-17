@@ -8,8 +8,8 @@ RUN mkdir -p /app \
 # Additional fonts
 COPY fonts/* /usr/share/fonts/truetype/msttcorefonts/
 
-RUN ln -s /usr/share/fonts/truetype/msttcorefonts/code39.ttf /usr/share/fonts/truetype/msttcorefonts/Code_39.ttf \
- && ln -s /usr/share/fonts/truetype/msttcorefonts/code128.ttf /usr/share/fonts/truetype/msttcorefonts/Code_128.ttf
+#RUN ln -s /usr/share/fonts/truetype/msttcorefonts/code39.ttf /usr/share/fonts/truetype/msttcorefonts/Code_39.ttf \
+# && ln -s /usr/share/fonts/truetype/msttcorefonts/code128.ttf /usr/share/fonts/truetype/msttcorefonts/Code_128.ttf
 
 RUN apk add --no-cache openjdk16-jre msttcorefonts-installer fontconfig \
         && update-ms-fonts \
