@@ -3,19 +3,20 @@ FROM alpine:3.18
 LABEL maintainer "JesusDF"
 
 RUN mkdir -p /app \
- && mkdir -p /usr/share/fonts/truetype/msttcorefonts/
+ && mkdir -p /app/fonts
 
 # Additional fonts
-COPY fonts/* /usr/share/fonts/truetype/msttcorefonts/
+COPY fonts/* /app/fonts/
 
-#RUN ln -s /usr/share/fonts/truetype/msttcorefonts/code39.ttf /usr/share/fonts/truetype/msttcorefonts/Code_39.ttf \
-# && ln -s /usr/share/fonts/truetype/msttcorefonts/code128.ttf /usr/share/fonts/truetype/msttcorefonts/Code_128.ttf
-
-RUN apk add --no-cache openjdk16-jre msttcorefonts-installer fontconfig \
+RUN adduser -D crystal \
+        && apk update \
+        && apk add --no-cache openjdk16-jre msttcorefonts-installer fontconfig \
         && update-ms-fonts \
+        && cp /app/fonts/* /usr/share/fonts/truetype/msttcorefonts/ \
         && fc-cache -f \
-        && ln -s /usr/share/fonts/truetype/msttcorefonts /usr/lib/jvm/default-jvm/jre/lib/fonts \
-        && adduser -D crystal
+        && apk cache clean \
+        && ln -s /usr/share/fonts/truetype/msttcorefonts /usr/lib/jvm/default-jvm/jre/lib/fonts
+
 WORKDIR /app
 
 # JAVA application

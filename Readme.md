@@ -28,7 +28,7 @@ curl -F "reportdata=@test.json" -F "reporttemplate=@the_dataset_report.rpt" http
 
 ## command line mode
 
-CrystalCmd upports running as a command line tool. Pass in path to report, data, and output fileand a pdf is generated.
+CrystalCmd supports running as a command line tool. Pass in path to report, data, and output fileand a pdf is generated.
 
 ```bash
 java -jar CrystalCmd.jar -reportpath "/path/to/report.rpt" -datafile "/path/to/data.json" -outpath "/path/to/generated/file.pdf"
