@@ -13,7 +13,8 @@ RUN adduser -D crystal \
         && apt install -y software-properties-common && apt update \
         && apt install -y openjdk-16-jdk ttf-mscorefonts-installer \
         && cp /app/fonts/* /usr/share/fonts/truetype/msttcorefonts/ \
-        && fc-cache -f \
+        && cp /app/fonts/* /usr/share/fonts/ \
+        && fc-cache -rf \
         && rm -rf /var/lib/apt/lists/* \
         && ln -s /usr/share/fonts/truetype/msttcorefonts /usr/lib/jvm/default-jvm/jre/lib/fonts
 

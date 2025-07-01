@@ -13,7 +13,8 @@ RUN adduser -D crystal \
         && apk add --no-cache openjdk16-jre msttcorefonts-installer fontconfig \
         && update-ms-fonts \
         && cp /app/fonts/* /usr/share/fonts/truetype/msttcorefonts/ \
-        && fc-cache -f \
+        && cp /app/fonts/* /usr/share/fonts/ \
+        && fc-cache -rf \
         && apk cache clean \
         && ln -s /usr/share/fonts/truetype/msttcorefonts /usr/lib/jvm/default-jvm/jre/lib/fonts
 
