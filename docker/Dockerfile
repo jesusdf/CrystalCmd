@@ -1,6 +1,6 @@
 FROM ubuntu:20.04
 
-LABEL maintainer "JesusDF"
+LABEL maintainer="JesusDF"
 
 RUN mkdir -p /app \
  && mkdir -p /app/fonts
@@ -20,6 +20,7 @@ RUN adduser -D crystal \
 WORKDIR /app
 
 # JAVA application
+ENV JAVA_HOME=/usr/lib/jvm/default-jvm
 COPY app/CrystalCmd.jar /app/
 
 EXPOSE 4321
