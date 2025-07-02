@@ -46,7 +46,7 @@ jobs:
       #    platforms: linux/amd64
       #    push: true
       #    tags: |
-      #      docker.io/${{ github.repository_owner }}/crystalcmd:ubuntu-latest
+      #      docker.io/${{ github.repository_owner }}/crystalcmd:ubuntu-stable
       #      docker.io/${{ github.repository_owner }}/crystalcmd:u-${{ steps.vars.outputs.sha_short }}
       - name: Update Docker Hub Description
         uses: peter-evans/dockerhub-description@v3
