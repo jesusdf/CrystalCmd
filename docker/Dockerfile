@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM ubuntu:24.04
 
 LABEL maintainer="JesusDF"
 
@@ -11,7 +11,7 @@ COPY fonts/* /app/fonts/
 RUN adduser -D crystal \
         && apt update \
         && apt install -y software-properties-common && apt update \
-        && apt install -y openjdk-16-jdk ttf-mscorefonts-installer \
+        && apt install -y openjdk-21-jdk fonts-dejavu ttf-mscorefonts-installer \
         && cp /app/fonts/* /usr/share/fonts/truetype/msttcorefonts/ \
         && cp /app/fonts/* /usr/share/fonts/ \
         && fc-cache -rf \
