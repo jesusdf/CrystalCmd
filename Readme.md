@@ -1,3 +1,6 @@
+
+Forked and rebased from https://github.com/majorsilence/CrystalCmd to meet custom needs.
+
 If you are looking for a production crystal reports server look into [SAP Crystal Server](https://www.sap.com/canada/products/technology-platform/crystal-server.html).
 
 # What is CrystalCmd
@@ -124,7 +127,7 @@ Basic info on the java version.
 
 ## command line mode
 
-CrystalCmd upports running as a command line tool. Pass in path to report, data, and output fileand a pdf is generated.
+CrystalCmd supports running as a command line tool. Pass in path to report, data, and output fileand a pdf is generated.
 
 ```bash
 java -jar CrystalCmd.jar -reportpath "/path/to/report.rpt" -datafile "/path/to/data.json" -outpath "/path/to/generated/file.pdf"

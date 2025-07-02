@@ -1,19 +1,29 @@
-FROM alpine:3.17
+FROM alpine:3.22
 
-LABEL maintainer "Peter Gill"
-
-
+LABEL maintainer="JesusDF"
 
 RUN mkdir -p /app \
-        && apk add --no-cache openjdk11-jre msttcorefonts-installer fontconfig \
+ && mkdir -p /app/fonts
+
+# Additional fonts
+COPY fonts/* /app/fonts/
+
+RUN adduser -D crystal \
+        && apk update \
+        && apk add --no-cache openjdk21-jre fonts-dejavu msttcorefonts-installer fontconfig \
         && update-ms-fonts \
-        && fc-cache -f \
-        && ln -s /usr/share/fonts/truetype/msttcorefonts /usr/lib/jvm/default-jvm/jre/lib/fonts \
-        && adduser -D majorsilence
+        && cp /app/fonts/* /usr/share/fonts/truetype/msttcorefonts/ \
+        && cp /app/fonts/* /usr/share/fonts/ \
+        && fc-cache -rf \
+        && apk cache clean \
+        && ln -s /usr/share/fonts/truetype/msttcorefonts /usr/lib/jvm/default-jvm/jre/lib/fonts
+
 WORKDIR /app
-COPY CrystalCmd_jar/ /app/
+
+# JAVA application
+ENV JAVA_HOME=/usr/lib/jvm/default-jvm
+COPY app/CrystalCmd.jar /app/
 
 EXPOSE 4321
-USER majorsilence
+USER crystal
 CMD ["java", "-jar", "/app/CrystalCmd.jar"]
-

@@ -1,20 +1,30 @@
 FROM ubuntu:20.04
 
-LABEL maintainer "Peter Gill"
+LABEL maintainer="JesusDF"
 
-# make install files accessible
-COPY CrystalCmd.jar /root
+RUN mkdir -p /app \
+ && mkdir -p /app/fonts
 
-WORKDIR /
+# Additional fonts
+COPY fonts/* /app/fonts/
 
-RUN apt update \
-        && apt-get install -y software-properties-common -y \
+RUN adduser -D crystal \
         && apt update \
-        && echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | debconf-set-selections \
-        && LC_ALL=C DEBIAN_FRONTEND=noninteractive apt install -y openjdk-11-jre fonts-dejavu fontconfig ttf-mscorefonts-installer \
-        && fc-cache -f -v \
-        && ln -s /usr/share/fonts/truetype/msttcorefonts /usr/lib/jvm/java-1.11.0-openjdk-amd64/lib/fonts
-        && rm -rf /var/lib/apt/lists/*
+        && apt install -y software-properties-common && apt update \
+        && apt install -y openjdk-16-jdk fonts-dejavu ttf-mscorefonts-installer \
+        && cp /app/fonts/* /usr/share/fonts/truetype/msttcorefonts/ \
+        && cp /app/fonts/* /usr/share/fonts/ \
+        && fc-cache -rfv \
+        && rm -rf /var/lib/apt/lists/* \
+        && ln -s /usr/share/fonts/truetype/msttcorefonts /usr/lib/jvm/default-jvm/jre/lib/fonts
+
+WORKDIR /app
+
+# JAVA application
+ENV JAVA_HOME=/usr/lib/jvm/default-jvm
+COPY app/CrystalCmd.jar /app/
+
 EXPOSE 4321
-CMD ["java", "-jar", "/root/CrystalCmd.jar"]
+USER crystal
+CMD ["java", "-jar", "/app/CrystalCmd.jar"]
 
