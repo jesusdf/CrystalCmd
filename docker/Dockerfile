@@ -11,7 +11,7 @@ COPY fonts/* /app/fonts/
 RUN adduser -D crystal \
         && apt update \
         && apt install -y software-properties-common && apt update \
-        && apt install -y openjdk-17-jdk fonts-dejavu ttf-mscorefonts-installer \
+        && apt install -y openjdk-11-jdk fonts-dejavu ttf-mscorefonts-installer \
         && cp /app/fonts/* /usr/share/fonts/truetype/msttcorefonts/ \
         && cp /app/fonts/* /usr/share/fonts/ \
         && fc-cache -rf \
