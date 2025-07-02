@@ -36,7 +36,7 @@ jobs:
           platforms: linux/amd64
           push: true
           tags: |
-            docker.io/${{ github.repository_owner }}/crystalcmd:latest
+            docker.io/${{ github.repository_owner }}/crystalcmd:stable
             docker.io/${{ github.repository_owner }}/crystalcmd:${{ steps.vars.outputs.sha_short }}
       #- name: Build and push - ubuntu
       #  uses: docker/build-push-action@v3
