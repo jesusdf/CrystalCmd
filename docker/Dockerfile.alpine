@@ -10,7 +10,7 @@ COPY fonts/* /app/fonts/
 
 RUN adduser -D crystal \
         && apk update \
-        && apk add --no-cache openjdk21-jre fonts-dejavu msttcorefonts-installer fontconfig \
+        && apk add --no-cache openjdk21-jre font-dejavu msttcorefonts-installer fontconfig \
         && update-ms-fonts \
         && cp /app/fonts/* /usr/share/fonts/truetype/msttcorefonts/ \
         && cp /app/fonts/* /usr/share/fonts/ \
