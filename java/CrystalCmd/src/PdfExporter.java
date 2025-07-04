@@ -238,7 +238,7 @@ public class PdfExporter {
     private static void SetSubReports(Data datafile, ReportClientDocument reportClientDocument) throws SQLException, IOException {
     	
     	//
-    	System.out.print("Num subreports: " + countSubreports(reportClientDocument) );
+    	//System.out.print("Num subreports: " + countSubreports(reportClientDocument) );
     	
     	//
         if (datafile.getSubReportDataTables() != null) {
