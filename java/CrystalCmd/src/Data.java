@@ -1,5 +1,6 @@
 import java.util.List;
 import java.util.Map;
+import java.util.Collections;
 
 public class Data {
     /*
@@ -13,12 +14,13 @@ public class Data {
     */
     //Map<String, String> map = new HashMap<String, String>();
     //map.put("dog", "type of animal");
+	
     private Map<String, Object> Parameters;
     public void setParameters(Map<String, Object> parameters) {
         this.Parameters = parameters;
     }
     public Map<String, Object> getParameters(){
-        return this.Parameters;
+        return this.Parameters != null ? this.Parameters : Collections.emptyMap();
     }
 
     //List<String> list = new ArrayList<String>;
@@ -27,7 +29,7 @@ public class Data {
         this.MoveObjectPosition = moveObjectPosition;
     }
     public List<MoveObjects> getMoveObjectPosition(){
-        return this.MoveObjectPosition;
+    	return this.MoveObjectPosition != null ? this.MoveObjectPosition : Collections.emptyList();
     }
 
     private Map<String, String> DataTables;
@@ -35,7 +37,7 @@ public class Data {
         this.DataTables = dataTables;
     }
     public Map<String, String> getDataTables(){
-        return this.DataTables;
+    	return this.DataTables != null ? this.DataTables : Collections.emptyMap();
     }
 
     private List<SubReports> SubReportDataTables;
@@ -43,7 +45,7 @@ public class Data {
         this.SubReportDataTables = dataTables;
     }
     public List<SubReports> getSubReportDataTables(){
-        return this.SubReportDataTables;
+    	return this.SubReportDataTables != null ? this.SubReportDataTables : Collections.emptyList();       
     }
 
     // ExportTypes
