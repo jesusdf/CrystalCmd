@@ -36,7 +36,7 @@ public class CsharpResultSet {
         String tableAndFileName = java.util.UUID.randomUUID().toString();
         String csvAbsolutePath = path +
                 FileSystems.getDefault().getSeparator() +
-                tableAndFileName + ".data";
+                tableAndFileName + ".csv";
 
         System.out.println("Temp file : " + csvAbsolutePath);
 
