@@ -24,4 +24,15 @@ public enum ExportTypes {
 	ExportTypes(int levelCode) {
 		this.levelCode = levelCode;
 	}
+	
+	public static ExportTypes fromInt(int code) {
+	    for (ExportTypes tipo : ExportTypes.values()) {
+	        if (tipo.levelCode == code) {
+	            return tipo;
+	        }
+	    }
+	    throw new IllegalArgumentException("Código desconocido para ExportTypes: " + code);
+	}
+
+	
 }
