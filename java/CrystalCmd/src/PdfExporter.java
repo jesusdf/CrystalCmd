@@ -221,8 +221,26 @@ public class PdfExporter {
             }
         }
     }
+    
+    
+    public static int countSubreports(com.crystaldecisions.sdk.occa.report.application.ReportClientDocument report) {
+        try {        	
+            int subreportNames = report.getSubreportController().getSubreportNames().size();
 
+            return subreportNames;
+
+        } catch (com.crystaldecisions.sdk.occa.report.lib.ReportSDKException e) {
+            System.err.println("Failed to retrieve subreports: " + e.getMessage());
+            return -1;
+        }
+    }
+    
     private static void SetSubReports(Data datafile, ReportClientDocument reportClientDocument) throws SQLException, IOException {
+    	
+    	//
+    	System.out.print("Num subreports: " + countSubreports(reportClientDocument) );
+    	
+    	//
         if (datafile.getSubReportDataTables() != null) {
             for (SubReports item : datafile.getSubReportDataTables()) {
                 try {
