@@ -50,18 +50,18 @@ public class Program {
 		} else {
 			System.out.println("Custom build");
 						
-			try {
-	            File jarFile = new File(Program.class.getProtectionDomain()
-	                                             .getCodeSource()
-	                                             .getLocation()
-	                                             .toURI());
-			
-	            long lastModified = jarFile.lastModified();
-	            System.out.println("Compiled " + new Date(lastModified));
-	        } catch (URISyntaxException e) {
-	            //e.printStackTrace();
-	        }			
-			
+			//try {
+	       //     File jarFile = new File(Program.class.getProtectionDomain()
+	       //                                      .getCodeSource()
+	       //                                      .getLocation()
+	       //                                      .toURI());
+			//
+	      //      long lastModified = jarFile.lastModified();
+	     //       System.out.println("Compiled " + new Date(lastModified));
+	      //  } catch (URISyntaxException e) {
+	     //       //e.printStackTrace();
+	     //   }			
+		//	
 			System.out.println("Running in server mode, http://127.0.0.1:4321/status");
 			HttpServer server = HttpServer.create(new InetSocketAddress(4321), 0);
 			server.createContext("/status", new ServerStatus());
