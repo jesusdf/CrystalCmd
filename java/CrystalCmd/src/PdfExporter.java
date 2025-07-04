@@ -139,10 +139,33 @@ public class PdfExporter {
 
 
         byteArrayInputStream = (ByteArrayInputStream) reportClientDocument.getPrintOutputController()
-                .export(ReportExportFormat.PDF);
+                .export(ConvertExportFormat(datafile.getExportAs()));
 
         reportClientDocument.close();
         return byteArrayInputStream;
+    }
+     
+    // ExportTypes 
+    private static ReportExportFormat ConvertExportFormat(int tipo) {
+    	return ReportExportFormat.RTF;
+    	/*switch (tipo) {
+        case CSV:
+            return ReportExportFormat.tabSeparatedText;
+        case CrystalReport:
+        	return ReportExportFormat.crystalReports;
+        case Excel:
+        	return ReportExportFormat.MSExcel;
+        case ExcelDataOnly:
+        	return ReportExportFormat.recordToMSExcel;
+        case PDF:
+        	return ReportExportFormat.PDF;
+        case RichText:
+        	return ReportExportFormat.RTF;
+        case TEXT:
+        	return ReportExportFormat.tabSeparatedText;            
+        default:
+            throw new IllegalArgumentException("Tipo de exportación no soportado: " + tipo);
+    	}    */	
     }
 
     private static void RemoveMainReportConnectionStrings(ReportClientDocument reportClientDocument) throws ReportSDKException {

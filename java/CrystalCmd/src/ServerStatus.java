@@ -5,7 +5,7 @@ import com.sun.net.httpserver.HttpHandler;
 
 public class ServerStatus implements HttpHandler {
 	public void handle(HttpExchange t) throws IOException {
-		String response = "Online";
+		String response = "success";
 		t.sendResponseHeaders(200, response.length());
 		OutputStream os = t.getResponseBody();
 		os.write(response.getBytes());

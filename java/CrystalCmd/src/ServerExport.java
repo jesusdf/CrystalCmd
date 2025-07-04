@@ -3,6 +3,8 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
@@ -11,7 +13,7 @@ import java.util.HashSet;
 import org.apache.commons.fileupload.FileItemIterator;
 import org.apache.commons.fileupload.FileItemStream;
 import org.apache.commons.fileupload.FileUpload;
-import org.apache.commons.fileupload.MultipartStream;
+//import org.apache.commons.fileupload.MultipartStream;
 import org.apache.commons.io.IOUtils;
 
 import com.sun.net.httpserver.HttpExchange;
@@ -83,16 +85,30 @@ public class ServerExport implements HttpHandler {
 		} catch (ReportSDKException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			setError(t, e);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			setError(t, e);
 		} catch (Exception e) {
 			e.printStackTrace();
+			setError(t, e);
 		}
 
 		os.close();
 	}
 
+	private void setError(HttpExchange t, Throwable e) throws IOException {		
+		StringWriter sw = new StringWriter();
+        PrintWriter pw = new PrintWriter(sw);
+        e.printStackTrace(pw);
+        String response= "Error. Imposible continue.\nMore info:\n" + sw.toString();		
+		t.sendResponseHeaders(500, response.length());
+		OutputStream os = t.getResponseBody();
+		os.write(response.getBytes());
+		os.close();
+	}	
+		
 	private File saveReportTemplate(byte[] reportTemplate) throws IOException {
 		File temp = File.createTempFile("temp-crystalcmd-template-", ".tmp");
 		// byte[] b = reportTemplate.getBytes(StandardCharsets.UTF_8);
